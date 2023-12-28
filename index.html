@@ -225,26 +225,54 @@
         <video id="video" class="video" src="videoo.mp4" loop=""></video>
     </div>
 
+
+
+
+
+    <!-- Bao gồm Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-database.js"></script>
+    
     <script>
-        // Sử dụng JavaScript để thực hiện việc đếm số lần click
-        let clickCount = localStorage.getItem('clickCount') || 0;
+        // Cấu hình Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyD7C-96IdDAebJQk6llGm5UXpG7430crr4",
+            authDomain: "takeshi-5573f.firebaseapp.com",
+            databaseURL: "https://takeshi-5573f-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "takeshi-5573f",
+            storageBucket: "takeshi-5573f.appspot.com",
+            messagingSenderId: "387309130431",
+            appId: "1:387309130431:web:f000b1c56ebfdf02aeac0a"
+        };
+
+        // Khởi tạo Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Sử dụng JavaScript để thực hiện việc đếm số lần click và lưu vào Firebase Realtime Database
         const clickCountElement = document.getElementById('clickCount');
-      
-        // Lấy thẻ cần theo dõi
         const myButton = document.getElementById('accept-button');
-      
-        // Thêm sự kiện click cho thẻ
-        myButton.addEventListener('click', function() {
-          clickCount++;
-          // Lưu giá trị vào localStorage
-          localStorage.setItem('clickCount', clickCount);
-          // Hiển thị số lần click mới
-          clickCountElement.textContent = 'Số lần click: ' + clickCount;
+
+        // Kết nối với Firebase Realtime Database
+        const database = firebase.database();
+        const clickRef = database.ref('clickCount');
+
+        // Lấy số lần click từ Firebase và hiển thị
+        clickRef.on('value', snapshot => {
+            const clickCount = snapshot.val() || 0;
+            clickCountElement.textContent = 'Số lần click: ' + clickCount;
         });
-      
-        // Hiển thị số lần click từ localStorage khi trang tải lại
-        clickCountElement.textContent = 'Số lần click: ' + clickCount;
-      </script>
+
+        // Thêm sự kiện click cho thẻ và cập nhật số lần click lên Firebase
+        myButton.addEventListener('click', function () {
+            clickRef.transaction(count => (count || 0) + 1);
+        });
+    </script>
+
+
+
+
+
+
 
     <script type="text/javascript">
         const video = document.getElementById("video");

@@ -206,6 +206,7 @@
     <div class="alert">
         <b> Hello:</b> Thông tin <a href="https://takeshi.dev" target="_blank"
             style="color:white">Takeshi</a>
+            <p id="clickCount">Số người Okela: 0</p>
     </div>
     <div id="overlay" class="overlay">
         <div class="overlay-body">
@@ -221,8 +222,29 @@
         <div id="twitch-embed"></div>
     </div>
     <div class="ibaillanos">
-        <video id="video" class="video" src="video.mp4" loop=""></video>
+        <video id="video" class="video" src="videoo.mp4" loop=""></video>
     </div>
+
+    <script>
+        // Sử dụng JavaScript để thực hiện việc đếm số lần click
+        let clickCount = localStorage.getItem('clickCount') || 0;
+        const clickCountElement = document.getElementById('clickCount');
+      
+        // Lấy thẻ cần theo dõi
+        const myButton = document.getElementById('accept-button');
+      
+        // Thêm sự kiện click cho thẻ
+        myButton.addEventListener('click', function() {
+          clickCount++;
+          // Lưu giá trị vào localStorage
+          localStorage.setItem('clickCount', clickCount);
+          // Hiển thị số lần click mới
+          clickCountElement.textContent = 'Số lần click: ' + clickCount;
+        });
+      
+        // Hiển thị số lần click từ localStorage khi trang tải lại
+        clickCountElement.textContent = 'Số lần click: ' + clickCount;
+      </script>
 
     <script type="text/javascript">
         const video = document.getElementById("video");

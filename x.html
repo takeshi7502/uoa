@@ -1,0 +1,129 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="view-transition" content="same-origin" />
+    <link rel="icon" href="https://cdn.discordapp.com/emojis/1123404855067803828.webp" />
+    <title>Ú oà</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        .overlay,
+        .contentx {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        #accept-button {
+            background: rgba(132, 94, 194, 0); 
+            color: white;
+            padding: 100%;
+        }
+
+        .overlay[hidden] {
+            display: none;
+        }
+
+        .overlay {
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background-color: #343541; */
+            background-image: url("./waku.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* Chiều cao cố định */
+            padding-right: 24px;
+            padding-left: 24px;
+        }
+
+        .contentx {
+            z-index: 1;
+        }
+
+        video#video {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        video#video::-webkit-media-controls-enclosure {
+            display: none !important;
+        }
+
+        .alert {
+            z-index: 10;
+            padding: 10px;
+            background-color: #343541;
+            color: white;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            position: absolute;
+            text-align: center;
+            margin-left: 10px;
+            margin-top: 8px;
+            font-family: "Roboto", sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="alert">
+        <a href="https://takeshi.dev" target="_blank" style="color: white;">Takeshi</a>
+    </div>
+    <div id="overlay" class="overlay">
+        <div id="accept-button" class="overlay-body"></div>
+    </div>
+    <div class="contentx">
+        <video id="video" class="video" src="nier.mp4" loop=""></video>
+    </div>
+
+    <script type="text/javascript">
+        const video = document.getElementById("video");
+        const overlay = document.getElementById("overlay");
+        const acceptButton = document.getElementById("accept-button");
+
+        let hasClicked;
+
+        window.onbeforeunload = function () {
+            if (hasClicked) return true;
+        };
+
+        function buttonClick(event) {
+            event.preventDefault();
+            if (!hasClicked) hasClicked = true;
+            overlay.hidden = true;
+            video.play();
+            videoClick();
+        }
+
+        function videoClick(event) {
+            if (event) event.preventDefault();
+            // if not fullscreen
+            const { documentElement } = document;
+            if (documentElement.requestFullscreen) documentElement.requestFullscreen();
+            else if (documentElement.mozRequestFullScreen) documentElement.mozRequestFullScreen();
+            else if (documentElement.webkitRequestFullscreen) documentElement.webkitRequestFullscreen();
+            else if (documentElement.msRequestFullscreen) documentElement.msRequestFullscreen();
+        }
+
+        acceptButton.addEventListener("click", buttonClick);
+        declineButton.addEventListener("click", buttonClick);
+        video.addEventListener("click", videoClick);
+    </script>
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+
+</html>

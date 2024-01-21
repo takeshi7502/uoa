@@ -19,194 +19,21 @@
     <meta name="author" content="Takeshi" />
     <meta name="view-transition" content="same-origin" />
     <script src="https://kit.fontawesome.com/3426ec3618.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://cdn.discordapp.com/emojis/1123404855067803828.webp" />
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&amp;display=swap" rel="stylesheet">
     <title>Ú oà</title>
 
-    <style type="text/css">
-        p {
-            margin: 0;
-        }
-
-        #decline-button {
-            text-decoration: none;
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        .overlay,
-        .ibaillanos {
-            position: fixed;
-
-            top: 0;
-            left: 0;
-
-            height: 100vh;
-            width: 100vw;
-        }
-
-        p.overlay-title {
-            font-size: 24px;
-            font-weight: 900;
-            color: black;
-            line-height: 1;
-
-            margin-bottom: 16px;
-        }
-
-        .overlay-button {
-            display: inline-flex;
-            align-items: center;
-
-            height: 40px;
-
-            padding-right: 24px;
-            padding-left: 24px;
-
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1;
-
-            border-radius: 4px;
-
-            margin: 4px;
-
-            cursor: pointer;
-        }
-
-        .overlay-buttons-wrapper {
-            margin: 24px -8px -8px;
-        }
-
-        #accept-button {
-            background-color: rgb(132, 94, 194);
-
-            color: white;
-        }
-
-        #decline-button {
-            color: rgb(132, 94, 194);
-
-            border: 2px solid rgb(132, 94, 194);
-        }
-
-        p.overlay-description {
-            font-size: 16px;
-            font-weight: 400;
-            color: rgba(0, 0, 0, 0.5);
-            line-height: 1.25;
-
-            margin-bottom: 16px;
-        }
-
-        a.overlay-link {
-            display: inline-block;
-
-            text-decoration: none;
-
-            font-size: 16px;
-            font-weight: 500;
-            color: rgb(132, 94, 194);
-            line-height: 1;
-
-            position: relative;
-
-            margin-top: 16px;
-        }
-
-        a.overlay-link::before {
-            position: absolute;
-
-            content: "";
-
-            height: calc(50% + 4px);
-            width: calc(100% + 8px);
-
-            bottom: -4px;
-            left: -4px;
-
-            background-color: rgba(132, 94, 194, 0.1);
-        }
-
-        .overlay-body {
-            z-index: 99;
-            background: white;
-            padding: 25px;
-            border: 1px solid black;
-            border-radius: 5px;
-            max-width: 512px;
-
-            text-align: center;
-
-            font-family: "Inter", sans-serif;
-        }
-
-        .overlay[hidden] {
-            display: none;
-        }
-
-        .overlay {
-            z-index: 3;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background-color: #f5f6fa;
-
-            padding-right: 24px;
-            padding-left: 24px;
-        }
-
-        .ibaillanos {
-            z-index: 1;
-        }
-
-        #twitch-embed {
-            position: absolute;
-            z-index: 2;
-        }
-
-        video#video {
-            height: 100%;
-            width: 100%;
-
-            object-fit: cover;
-        }
-
-        video#video::-webkit-media-controls-enclosure {
-            display: none !important;
-        }
-
-        .alert {
-            z-index: 10;
-            padding: 10px;
-            background-color: #f94bff;
-            color: white;
-            margin-bottom: 15px;
-            position: absolute;
-            text-align: center;
-            margin-left: 15px;
-            margin-right: 15px;
-            font-family: "Inter", sans-serif;
-        }
-    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin="true">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa">
 </head>
 
 <body cz-shortcut-listen="true">
     <div class="alert">
-        <b> Hello:</b> Thông tin <a href="https://takeshi.dev" target="_blank"
+        Thông tin: <a href="https://takeshi.dev" target="_blank"
             style="color:white">Takeshi</a>
-            <!-- <p id="clickCount">Số người Okela: 0</p> -->
     </div>
     <div id="overlay" class="overlay">
         <div class="overlay-body">
@@ -219,60 +46,10 @@
                 <a href="https://card.takeshi.dev" id="decline-button" class="overlay-button">Thoát</a>
             </div>
         </div>
-        <div id="twitch-embed"></div>
     </div>
-    <div class="ibaillanos">
-        <video id="video" class="video" src="video.mp4" loop=""></video>
+    <div class="contentx">
+        <video id="video" class="video" src="videoo.mp4" loop=""></video>
     </div>
-
-
-
-
-
-    <!-- Bao gồm Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-database.js"></script>
-    
-    <script>
-        // Cấu hình Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyD7C-96IdDAebJQk6llGm5UXpG7430crr4",
-            authDomain: "takeshi-5573f.firebaseapp.com",
-            databaseURL: "https://takeshi-5573f-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "takeshi-5573f",
-            storageBucket: "takeshi-5573f.appspot.com",
-            messagingSenderId: "387309130431",
-            appId: "1:387309130431:web:f000b1c56ebfdf02aeac0a"
-        };
-
-        // Khởi tạo Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        // Sử dụng JavaScript để thực hiện việc đếm số lần click và lưu vào Firebase Realtime Database
-        const clickCountElement = document.getElementById('clickCount');
-        const myButton = document.getElementById('accept-button');
-
-        // Kết nối với Firebase Realtime Database
-        const database = firebase.database();
-        const clickRef = database.ref('clickCount');
-
-        // Lấy số lần click từ Firebase và hiển thị
-        clickRef.on('value', snapshot => {
-            const clickCount = snapshot.val() || 0;
-            clickCountElement.textContent = 'Số lần click: ' + clickCount;
-        });
-
-        // Thêm sự kiện click cho thẻ và cập nhật số lần click lên Firebase
-        myButton.addEventListener('click', function () {
-            clickRef.transaction(count => (count || 0) + 1);
-        });
-    </script>
-
-
-
-
-
-
 
     <script type="text/javascript">
         const video = document.getElementById("video");
@@ -312,8 +89,5 @@
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
-
-
 </body>
-
 </html>
